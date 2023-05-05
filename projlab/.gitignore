@@ -63,3 +63,10 @@ msbuild.wrn
 InitialSketch/buildout/files.txt
 
 !TNCFS_Skeleton.zip
+
+# From https://github.com/github/gitignore/blob/master/Gradle.gitignore
+.gradle
+/build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
