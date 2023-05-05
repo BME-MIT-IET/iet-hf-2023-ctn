@@ -3,7 +3,7 @@ package Modell.Agensek;
 import Logika.Virologus;
 
 /**
- * Állapotot jelöl. Ez idő alatt amíg ez a hatás hat a virológusra, addig képtelen ágenst fogadni
+ * Allapotot jelöl. Ez idő alatt amíg ez a hatás hat a virológusra, addig képtelen ágenst fogadni
  * más virológusoktól kenés esetén
  */
 public class Sebezhetetlenseg extends Agens{
