@@ -10,7 +10,7 @@ Alapvető CI beüzemelése. Ehhez a gyakorlati anyagot illetve internetes blogok
 
 ## Képernyőképek :framed_picture:
 
-![Egy sikeres build](/../screenshots/CI_01.png)
+![Egy sikeres build](/doc/screenshots/CI_01.png)
 
 ## Eredmények és tanulságok :thinking:
 
