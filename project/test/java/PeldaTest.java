@@ -19,6 +19,6 @@ class PeldaTest {
 
     @Test
     public void test2(){
-        assertNull(null);
+        assertNull(virologus);
     }
 }
