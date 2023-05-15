@@ -17,7 +17,7 @@ jobs:
 
     defaults:
         run:
-          working-directory: ./projlab/Proto
+          working-directory: ./project
 
     steps:
       - uses: actions/checkout@v3
@@ -35,4 +35,4 @@ jobs:
         uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
         with:
           arguments: build
-          build-root-directory: ./projlab/Proto
+          build-root-directory: ./project
