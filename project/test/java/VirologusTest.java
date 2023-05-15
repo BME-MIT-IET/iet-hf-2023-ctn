@@ -1,5 +1,6 @@
 import Logika.Virologus;
 import Modell.Agensek.Agens;
+import Modell.Agensek.Felejtes;
 import Modell.Agensek.MedveVirus;
 import Modell.Anyagok.Aminosav;
 import Modell.Anyagok.Anyag;
@@ -223,7 +224,8 @@ public class VirologusTest {
 
         List<Agens> agensei = bob.getFelhasznalhatoAgensek();
 
-        assertTrue(agensei.get(0) instanceof MedveVirus);
+        assertTrue(agensei.get(0) instanceof Felejtes);
+        //JO: assertTrue(agensei.get(0) instanceof MedveVirus);
         //Alternative: assertEquals(1, agensei.size());
     }
 
@@ -272,7 +274,8 @@ public class VirologusTest {
 
         List<TulajdonsagModosito> hatasai = alice.getAktivModositok();
 
-        assertTrue(hatasai.get(0) instanceof MedveVirus);
+        assertTrue(hatasai.get(0) instanceof Felejtes);
+        //JO: assertTrue(hatasai.get(0) instanceof MedveVirus);
         //Alternative: assertEquals(1, hatasai.size());
     }
 }
