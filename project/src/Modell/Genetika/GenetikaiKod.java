@@ -62,9 +62,13 @@ public class GenetikaiKod implements Serializable {
         boolean voltHiba = false;
         for(var it: anyagSzukseglet){
             var it_hasznalva = anyagTarolo.Hasznalat(it);
-            if(it_hasznalva != null && it_hasznalva.getMennyiseg() == it.getMennyiseg())
+            if(it_hasznalva != null)
                 hasznalva.add(it_hasznalva);
             else{
+                voltHiba=true;
+                break;
+            }
+            if(it_hasznalva.getMennyiseg() != it.getMennyiseg()){
                 voltHiba = true;
                 break;
             }
