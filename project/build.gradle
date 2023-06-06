@@ -38,7 +38,6 @@ test {
 jacocoTestReport {
     reports {
 	xml.enabled = true
-        xml.required = false
         csv.required = false
         html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
         xml.destination file("${buildDir}/reports/jacoco.xml")
