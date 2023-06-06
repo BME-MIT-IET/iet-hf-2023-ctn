@@ -14,7 +14,7 @@ Ennek a tesztelésnek az a lényege, hogy a program szerkezetének ismerete nél
 |8| Egy virológus egyszerre maximum 3 felszerelést viselhet|teljesül|
 |9| Baltával meg lehet ölni más virológusokat | teljesül |
 |10|A kesztyű visszadobja a támadóra az ágenst.| teljesül |
-|11| A kesztyű 3 használat után elkopik| nem teljesül |
+|11| A kesztyű 3 használat után elkopik| teljesül |
 |12| Találkozás esetén a támadó a megtámadott fél bénulása esetén elveheti annak anyagkészletét.|teljesül|
 |13| A játékot összes genetikai kódot először megtanuló virológus nyeri. | nem teljesül |
 |14| A zsák megnöveli az anyaggyűjtő képességet.| teljesül|
@@ -31,7 +31,7 @@ Ennek a tesztelésnek az a lényege, hogy a program szerkezetének ismerete nél
  - A virológussal megszereztem 3 különböző felszerelést,majd felvettem mégegyet és nem krült viselt állapotba, akkor sem amikor az aktiválásra rányomtam, de ha levettem az egyik felszerelést, akkor egy másikat rá tudtam rakni
  - Balta felvétele után, ha egy másik játékoson használtam, akkor kiesett a játékból és csak a többi játékost lehetett irányítani
  - Amikor egy virológusra, akinél volt egy kesztyű, kentem egy ágenst, az ágens az én virológusomra kezdett el hatni, amikor nálam is volt kesztyű, akkor az ágens megsemmisült.
- - Akárhányszor használtam ágenst, a kesztyűnek a hatása sose veszett el
+ - 3 kenés után a másik játékostól kitörlődött a kesztyű és tudtam rá ágenst kenni
  - egy megbénított virológustól elloptam az anyagkészletét, amikor ez a virológus került sorra, akkor nem volt semennyi anyaga
  - Ha egy játékos megszerzi mind a 4 genetikai kódot, akkor felugrik egy ablak, hogy megnyerte, de nincs vége a játéknak, lehet folytatni és ha egy másik játékos is megszerzi a 4 genetikai kódot, nála is kiírja, hogy ő nyert
  - A zsák felvétele esetén több anyagot tudtam felszedni és ezeket felhasználni is tudtam
