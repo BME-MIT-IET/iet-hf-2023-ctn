@@ -4,7 +4,6 @@ import Logika.Virologus;
 import Modell.Vedofelszereles.Vedofelszereles;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Virológusok/Játékosok képesek rálépni és kilépni onnan. Itt vannak elrejtve védőfelszerelések

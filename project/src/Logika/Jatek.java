@@ -1,7 +1,6 @@
 package Logika;
 
 import Logika.Idozites.Timer;
-import Modell.Agensek.Agens;
 import Modell.Genetika.GenetikaiKod;
 import Modell.Palya.TeruletiElem;
 
@@ -24,6 +23,8 @@ public class Jatek implements Serializable {
     //region singleton
     private static Jatek inst = new Jatek();
 
+    private static Random r = new Random();
+
     public static void reset(){
         inst = new Jatek();
     }
@@ -41,7 +42,6 @@ public class Jatek implements Serializable {
         palya = palyaKonfig.palyaGeneralasa();
 
         // Jatekosok elhelyezese random teruleti elemekre
-        Random r = new Random();
         for(int i = 0; i < jatekosok.size(); i++){
             // random start teruleti elem kialakitasa
             TeruletiElem randomTerulet = palya.get(r.nextInt(palya.size()));
@@ -74,7 +74,7 @@ public class Jatek implements Serializable {
     ArrayList<Virologus> jatekosok = new ArrayList<>();
     ArrayList<TeruletiElem> palya = new ArrayList<>();
     Timer idozito = new Timer();
-    Virologus aktiv = jatekosok.size() == 0 ? null : jatekosok.get(0);
+    Virologus aktiv = jatekosok.isEmpty() ? null : jatekosok.get(0);
 
     //endregion
 

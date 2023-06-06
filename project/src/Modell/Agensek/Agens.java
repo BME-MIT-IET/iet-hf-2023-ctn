@@ -4,7 +4,6 @@ import Logika.Idozites.TickReceiver;
 import Logika.Jatek;
 import Modell.TulajdonsagModosito;
 
-import java.io.Serializable;
 
 /**
  * Egy ágenst reprezentál, figyel arra, hogy az ágens hatása lejárt-e, tehát, hogy aktívan hat-e

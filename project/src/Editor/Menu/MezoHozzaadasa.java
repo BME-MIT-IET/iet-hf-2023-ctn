@@ -16,12 +16,13 @@ public class MezoHozzaadasa implements MainMenuItem {
         var ujMezo = SzituacioEpitoMenu.elemGeneralasaNevAlapjan(args);
         if(ujMezo == null)
             throw new Exception("Ismeretlen tipusu mezo!");
-        var idmax = Jatek.getInstance().getPalya().stream().max((p1, p2)-> p1.getId() > p2.getId() ? 1 : -1).get();
-        ujMezo.setId(idmax.getId() + 1);
-        ujMezo.getSzomszedok().add(state.getCurrent());
-        Jatek.getInstance().getPalya().add(ujMezo);
-        state.getCurrent().getSzomszedok().add(ujMezo);
-
+        var idmax = Jatek.getInstance().getPalya().stream().max((p1, p2)-> p1.getId() > p2.getId() ? 1 : -1);
+        if (idmax.isPresent()) {
+            ujMezo.setId(idmax.get().getId() + 1);
+            ujMezo.getSzomszedok().add(state.getCurrent());
+            Jatek.getInstance().getPalya().add(ujMezo);
+            state.getCurrent().getSzomszedok().add(ujMezo);
+        }
         //state.setCurrent(ujMezo); Nem lep at alapbol
     }
 

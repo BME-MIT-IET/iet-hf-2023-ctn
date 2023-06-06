@@ -2,7 +2,6 @@ package Editor;
 
 import Logika.Jatek;
 import Modell.Agensek.*;
-import Modell.Genetika.GenetikaiKod;
 import Modell.Palya.*;
 import Modell.Vedofelszereles.*;
 import Editor.Menu.*;
@@ -16,6 +15,19 @@ import static Editor.TestUtils.nev;
 
 public class SzituacioEpitoMenu {
 
+    public SzituacioEpitoMenu() {
+        menu.add(new AnyagHozzaadasa());
+        menu.add(new JelenlegiMezoInfo());
+        menu.add(new LepesSzomszedra());
+        menu.add(new VirologusTorlese());
+        menu.add(new Mentes());
+        menu.add(new Betoltes());
+        menu.add(new MezoHozzaadasa());
+        menu.add(new SzomszedsagLetrehozasa());
+        menu.add(new UjViro());
+        menu.add(new UjGenKod());
+        menu.add(new VedofelszerelesElhelyezese());
+    }
 
     public static TeruletiElem elemOlvasasa(Scanner sr){
         TeruletiElem te =  null;
@@ -109,21 +121,7 @@ public class SzituacioEpitoMenu {
         }
     }
 
-    private static ArrayList<MainMenuItem> menu = new ArrayList<>(){
-        {
-            add(new AnyagHozzaadasa());
-            add(new JelenlegiMezoInfo());
-            add(new LepesSzomszedra());
-            add(new VirologusTorlese());
-            add(new Mentes());
-            add(new Betoltes());
-            add(new MezoHozzaadasa());
-            add(new SzomszedsagLetrehozasa());
-            add(new UjViro());
-            add(new UjGenKod());
-            add(new VedofelszerelesElhelyezese());
-        }
-    };
+    private static ArrayList<MainMenuItem> menu = new ArrayList<>();
 
     public static String mainMode(GenState state, Scanner scanner){
         scanner.useDelimiter("");
@@ -135,29 +133,26 @@ public class SzituacioEpitoMenu {
             }
             try{
                 System.out.print(">");
-                String in;
-                String args;
-                String currentSuggestion = "";
                     var line = scanner.nextLine().toLowerCase(Locale.ROOT);
 
-                    var potential_args = "";
+                    var potentialArgs = "";
                     String finalIn = line;
                     if(line.contains(" ")) {
-                        potential_args = line.substring(line.lastIndexOf(" ") + 1);
+                        potentialArgs = line.substring(line.lastIndexOf(" ") + 1);
                         finalIn = line.substring(0, line.lastIndexOf(" "));
                     }
 
                     String finalIn1 = finalIn;
                     var itemsPossible = menu.stream().filter(p->p.getName().toLowerCase(Locale.ROOT).startsWith(finalIn1)).collect(Collectors.toList());
                     System.out.print("\r");
-                    if(itemsPossible.size() > 0)
+                    if(itemsPossible.isEmpty())
                     {
                         if(itemsPossible.size() == 1){
-                            if(itemsPossible.get(0).getName().contains(potential_args))
-                                potential_args = "";
-                            System.out.println("Menu item matched: " + itemsPossible.get(0).getName() + " with arguments: " + potential_args);
+                            if(itemsPossible.get(0).getName().contains(potentialArgs))
+                                potentialArgs = "";
+                            System.out.println("Menu item matched: " + itemsPossible.get(0).getName() + " with arguments: " + potentialArgs);
                             try{
-                                itemsPossible.get(0).exec(potential_args, state);
+                                itemsPossible.get(0).exec(potentialArgs, state);
                             }catch (Exception e){
                                 System.out.println(e.getMessage());
                             }

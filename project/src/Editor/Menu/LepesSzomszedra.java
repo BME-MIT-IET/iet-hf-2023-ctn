@@ -13,11 +13,11 @@ public class LepesSzomszedra implements MainMenuItem {
     public void exec(String args, SzituacioEpitoMenu.GenState state) throws Exception {
         var fieldId = Integer.parseInt(args.trim());
 
-        var next = Jatek.getInstance().getPalya().stream().filter(p->p.getId() == fieldId).findFirst().get();
+        var next = Jatek.getInstance().getPalya().stream().filter(p->p.getId() == fieldId) .findFirst();
 
-        if(next == null)
+        if(next.isEmpty())
             throw new Exception("Nem talalhato ilyen ID-vel teruleti elem.");
-        state.setCurrent(next);
+        state.setCurrent(next.get());
     }
 
     @Override

@@ -2,11 +2,6 @@ package Editor.ViroMenu;
 
 import Editor.SzituacioEpitoMenu;
 import Logika.Virologus;
-import Modell.Agensek.*;
-import Modell.Anyagok.Aminosav;
-import Modell.Anyagok.Nukleotid;
-
-import java.util.Locale;
 
 public class AgensHozzaadasa implements ViroMenuItem{
     @Override
