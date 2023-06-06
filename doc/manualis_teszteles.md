@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 ﻿﻿## Black box és exploratory tesztelés
+=======
+
+﻿## Blackbox tesztelés
+>>>>>>> cd592d9e35c6db18e2b3849dd6992fc24a73446b
 Ennek a tesztelésnek az a lényege, hogy a program szerkezetének ismerete nélkül, a csak a dokumentáció és követelmények alapján teszteljük
 
 ### Funkcionaális követelmények
@@ -23,7 +28,11 @@ Ennek a tesztelésnek az a lényege, hogy a program szerkezetének ismerete nél
 
 ### Tesztelések menete
 
+<<<<<<< HEAD
   1. A játékot elindítottam 2 játékossal, majd ugyanabba a laborba irányítottam őket és letapogattam az ágenset és ugyan azt a genetikai kódot találtam
+=======
+   1. A játékot elindítottam 2 játékossal, majd ugyanabba a laborba irányítottam őket és letapogattam az ágenset és ugyan azt a genetikai kódot találtam
+>>>>>>> cd592d9e35c6db18e2b3849dd6992fc24a73446b
   2.  Az ágens elkészítésekor azt az ágenset hozhattam létre, amit már letapogattam és el is készült
   3.  Az egyik játékossal rákentem a felejtő ágenst egy olyan játékosra, aki 2 ágenst ismert, a rákenés után már nem ismerte őket
   4.  A különböző ágensek elkészítésekor kölönböző mennyiségű anyagra van szükség (pl.: felejtes 12-12, sebezhetetlenség 8-9), de konzisztensen. Mivel a specifikációban nem volt megadva pontos szám, ezért teljesül
@@ -41,5 +50,11 @@ Ennek a tesztelésnek az a lényege, hogy a program szerkezetének ismerete nél
  
  Észrevett hibák:
  
+<<<<<<< HEAD
  - Ha több anyagot próbálunk felvenni, mint amennyi férőhely van, amikor még nem vettünk fel korábban anyagot, akkor azt írja, hogy 0 anyag van a virológusnál és akármennyit próbálunk felvenni, nem tudunk és a kiírás sem változik és a raktárról is eltűnnek az anyagok -- Ok: Az anyag felvételekor nincsen ellenőrizve, hogy mennyi lehet maximum a virológusnál, az AnyagTarolo.Tarolas() függvényben nem egyértelmű, hogy mi történik itt lehet probléma, a kiírás jónak néz ki -- Státusz: nincs kijavítva
  - Ágens készítésekor, ha valamelyik anyagból nincsen elég, akkor a kevesebb anyag nullázódik és nem készül el az ágens -- Ok: GenetikaiKod.agensLetrehozasa()-ban nem mindenképpen kerül bele a hasznalva listába az it_hasznalva, ezért visszatételnél nem kerül vissza az anyagtárolóba -- Státusz: kijavítva
+=======
+ - Ha több anyagot próbálunk felvenni, mint amennyi férőhely van, amikor még nem vettünk fel korábban anyagot, akkor azt írja, hogy 0 anyag van a virológusnál és akármennyit próbálunk felvenni, nem tudunk és a kiírás sem változik és a raktárról is eltűnnek az anyagok -- Ok: Az anyag felvételekor nincsen ellenőrizve, hogy mennyi lehet maximum a virológusnál, az AnyagTarolo.Tarolas() függvényben nem egyértelmű, hogy mi történik itt lehet probléma, a kiírás jónak néz ki
+ - Ágens készítésekor, ha valamelyik anyagból nincsen elég, akkor a kevesebb anyag nullázódik és nem készül el az ágens -- Ok: GenetikaiKod.agensLetrehozasa()-ban nem mindenképpen kerül bele a hasznalva listába az it_hasznalva, ezért visszatételnél nem kerül vissza az anyagtárolóba
+
+>>>>>>> cd592d9e35c6db18e2b3849dd6992fc24a73446b
