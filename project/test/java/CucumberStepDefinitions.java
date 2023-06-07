@@ -1,3 +1,18 @@
+import Logika.Virologus;
+import Modell.Agensek.Agens;
+import Modell.Agensek.Felejtes;
+import Modell.Agensek.MedveVirus;
+import Modell.Anyagok.Aminosav;
+import Modell.Anyagok.Anyag;
+import Modell.Genetika.GenetikaiKod;
+import Modell.Palya.Labor;
+import Modell.Palya.Ovohely;
+import Modell.Palya.Raktar;
+import Modell.Palya.TeruletiElem;
+import Modell.TulajdonsagModosito;
+import Modell.Vedofelszereles.Balta;
+import Modell.Vedofelszereles.Vedofelszereles;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
