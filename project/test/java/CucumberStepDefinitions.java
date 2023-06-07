@@ -96,7 +96,8 @@ public class StepDefinitions {
 
     @When("Bob picks up Aminosav")
     public void bob_picks_up_aminosav() {
-        bob.anyagFelvetele(new Aminosav(aminosavMennyiseg));
+        bob.anyagFelvetele(new Aminosav(10));
+        Anyag aminosav = bob.getAnyagok().Hasznalat(new Aminosav(10));
     }
 
     @Then("Bob should have the specified amount of Aminosav")
@@ -108,7 +109,9 @@ public class StepDefinitions {
     @Given("there is a Labor with a GenetikaiKod")
     public void there_is_a_labor_with_a_genetikai_kod() {
         labor = new Labor();
-        labor.setGenKod(new GenetikaiKod(10, new MedveVirus()));
+        HashSet<Anyag> anyagok = new HashSet<Anyag>();
+        anyagok.add(new Aminosav(10));
+        labor.setGenKod(new GenetikaiKod(anyagok, new MedveVirus()));
     }
 
     @Given("Bob starts at the Labor")
@@ -175,8 +178,8 @@ public class StepDefinitions {
         labor = new Labor();
     }
 
-    @Given("Bob starts at the Raktar")
-    public void bob_starts_at_the_raktar() {
+    @Given("Bob starts at the Raktar Again")
+    public void bob_starts_at_the_raktar_again() {
         bob.setStartTerulet(raktar);
         startingTerulet = raktar;
     }
@@ -191,7 +194,7 @@ public class StepDefinitions {
 
     @Then("Bob should have at least one Agens")
     public void bob_should_have_at_least_one_agens() {
-        Assert.assertTrue(bob.getAgensek().size() >= 1);
+        Assert.assertTrue(bob.getFelhasznalhatoAgensek().size() >= 1);
     }
 
     @Given("there is a Raktar with insufficient Aminosav")
@@ -204,7 +207,7 @@ public class StepDefinitions {
         bob.anyagFelvetele(new Aminosav(2));
         bob.mozgas(labor);
         bob.kodLetapogatasa();
-        bob.agensLetrehozas(scannedGenetikaiKod);
+        bob.agensKeszitese(scannedGenetikaiKod);
     }
 
     @Then("Bob should not have any Agens")
@@ -219,7 +222,7 @@ public class StepDefinitions {
 
     @Given("Bob has an Agens")
     public void bob_has_an_agens() {
-        Agens medveAgens = bob.getFelhasznalhatoAgensek().iterator().next();;
+        Agens medveAgens = bob.getFelhasznalhatoAgensek().iterator().next();
     }
 
     @Given("Alice is a Virologus")
@@ -241,6 +244,6 @@ public class StepDefinitions {
 
     @Then("Alice should have the planted Agens as a modification")
     public void alice_should_have_the_planted_agens_as_a_modification() {
-        Assert.assertEquals(1, alice.getModositasok().size());
+        Assert.assertEquals(1, alice.getAktivModositok().size());
     }
 }
