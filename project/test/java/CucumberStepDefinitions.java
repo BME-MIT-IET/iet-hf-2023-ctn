@@ -13,6 +13,10 @@ import Modell.TulajdonsagModosito;
 import Modell.Vedofelszereles.Balta;
 import Modell.Vedofelszereles.Vedofelszereles;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -97,13 +101,13 @@ public class StepDefinitions {
     @When("Bob picks up Aminosav")
     public void bob_picks_up_aminosav() {
         bob.anyagFelvetele(new Aminosav(10));
-        Anyag aminosav = bob.getAnyagok().Hasznalat(new Aminosav(10));
     }
 
     @Then("Bob should have the specified amount of Aminosav")
     public void bob_should_have_the_specified_amount_of_aminosav() {
         int specifiedAmount = 10; 
-        Assert.assertEquals(specifiedAmount, bob.getMennyiseg());
+        Anyag aminosav = bob.getAnyagok().Hasznalat(new Aminosav(10));
+        Assert.assertEquals(specifiedAmount, aminosav.getMennyiseg());
     }
 
     @Given("there is a Labor with a GenetikaiKod")
@@ -239,6 +243,7 @@ public class StepDefinitions {
 
     @When("Bob plants the Agens on Alice")
     public void bob_plants_the_agens_on_alice() {
+        Agens medveAgens = bob.getFelhasznalhatoAgensek().iterator().next();
         bob.agensVetese(medveAgens, alice);
     }
 
