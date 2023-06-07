@@ -3,9 +3,8 @@ package cli;
 import java.util.Scanner;
 
 public class JatekMain {
-    public static java.util.Scanner Scanner;
+    public static final java.util.Scanner Scanner = new Scanner(System.in);
     public static void main(String[] args){
-        JatekMain.Scanner = new Scanner(System.in);
         StartMenu st = new StartMenu();
         FoMenu fomenu = new FoMenu();
 

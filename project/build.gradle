@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'jacoco'
+    id "org.sonarqube" version "4.2.0.3129"
 }
 
 group 'org.example'
@@ -36,12 +37,23 @@ test {
 
 jacocoTestReport {
     reports {
-        xml.required = false
+	xml.enabled = true
         csv.required = false
         html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+        xml.destination file("${buildDir}/reports/jacoco.xml")
     }
 }
 
 jacoco {
     toolVersion = "0.8.8"
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "ctn2023_hf"
+        property "sonar.organization", "ctn2023"
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.java.coveragePlugin", "jacoco"
+	property "sonar.coverage.jacoco.xmlReportPath", "${buildDir}/reports/jacoco.xml"
+  }
 }

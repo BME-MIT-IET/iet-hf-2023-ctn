@@ -2,7 +2,6 @@ package Modell.Agensek;
 
 import Logika.Virologus;
 import Modell.Anyagok.Anyag;
-import Modell.Anyagok.AnyagTarolo;
 import Modell.Palya.TeruletiElem;
 import Modell.Vedofelszereles.Vedofelszereles;
 

@@ -7,8 +7,6 @@ import Modell.Genetika.GenetikaiKod;
 import Modell.TulajdonsagModosito;
 import Modell.Vedofelszereles.Vedofelszereles;
 
-import static Editor.TestUtils.nev;
-
 public class JelenlegiMezoInfo implements MainMenuItem {
     @Override
     public String getName() {

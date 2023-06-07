@@ -7,7 +7,6 @@ import Modell.TulajdonsagModosito;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 /**
@@ -47,13 +46,11 @@ public class Timer implements Serializable {
         });
         //TODO: légyszi nézzétek meg, hogy ez a rész így oké lenne-e
         listeners.forEach(p->{
-            if (p instanceof Virologus) {
-                if (p == Jatek.getInstance().getAktiv()) {
-                    for(TulajdonsagModosito a: ((Virologus) p).getAktivModositok()) {
-                        if (a instanceof Agens) ((Agens) a).onTickReceived(currentRound);
-                    }
-                    p.onTickReceived(currentRound);
+            if (p instanceof Virologus && p == Jatek.getInstance().getAktiv()) {
+                for(TulajdonsagModosito a: ((Virologus) p).getAktivModositok()) {
+                    if (a instanceof Agens) ((Agens) a).onTickReceived(currentRound);
                 }
+                p.onTickReceived(currentRound);
             }
 
             //p.onTickReceived(currentRound);

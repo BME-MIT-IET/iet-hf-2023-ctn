@@ -3,7 +3,6 @@ package cli;
 import Logika.Jatek;
 import Logika.PalyaKonfiguracio;
 import Logika.Virologus;
-import cli.JatekMain;
 
 import java.util.ArrayList;
 import java.util.HashSet;

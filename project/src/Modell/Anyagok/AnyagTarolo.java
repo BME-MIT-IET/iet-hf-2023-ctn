@@ -1,9 +1,7 @@
 package Modell.Anyagok;
 
-import Modell.Agensek.Agens;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**

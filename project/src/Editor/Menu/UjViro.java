@@ -14,18 +14,20 @@ import java.util.stream.Collectors;
 
 public class UjViro implements MainMenuItem {
 
-    ArrayList<ViroMenuItem> menu = new ArrayList<ViroMenuItem>(){
-        {
-            add(new AgensHozzaadasa());
-            add(new VethetoAgensHozzaadasa());
-            add(new AnyagHozzaadasa());
-            add(new Elkeszult());
-            add(new Megse());
-            add(new Medve());
-            add(new VedofelszerelesHozzaadasa());
-            add(new AktivFelszerelesHozzaadasa());
-        }
-    };
+    ArrayList<ViroMenuItem> menu = new ArrayList<>();
+        
+            
+    public UjViro() {
+        menu.add(new AgensHozzaadasa());
+        menu.add(new VethetoAgensHozzaadasa());
+        menu.add(new AnyagHozzaadasa());
+        menu.add(new Elkeszult());
+        menu.add(new Megse());
+        menu.add(new Medve());
+        menu.add(new VedofelszerelesHozzaadasa());
+        menu.add(new AktivFelszerelesHozzaadasa());
+    }
+    
 
 
     @Override
@@ -46,9 +48,6 @@ public class UjViro implements MainMenuItem {
         while (res >= 0){
             try{
                 System.out.print(">");
-                String in;
-                String args;
-                String currentSuggestion = "";
                 var line = scanner.nextLine().toLowerCase(Locale.ROOT);
 
                 var potential_args = "";
@@ -61,7 +60,7 @@ public class UjViro implements MainMenuItem {
                 String finalIn1 = finalIn;
                 var itemsPossible = menu.stream().filter(p->p.getName().toLowerCase(Locale.ROOT).startsWith(finalIn1)).collect(Collectors.toList());
                 System.out.print("\r");
-                if(itemsPossible.size() > 0)
+                if(itemsPossible.isEmpty())
                 {
                     if(itemsPossible.size() == 1){
                         if(itemsPossible.get(0).getName().contains(potential_args))
@@ -91,6 +90,7 @@ public class UjViro implements MainMenuItem {
                 break;
             }
         }
+        scanner.close();
     }
 
     @Override

@@ -9,7 +9,6 @@ import Modell.Palya.*;
 import Modell.Vedofelszereles.*;
 import ggcfg.CfgProperty;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
@@ -92,7 +91,7 @@ public class PalyaKonfiguracio {
     }*/
 
     public ArrayList<TeruletiElem> palyaGeneralasa(){
-        ArrayList<TeruletiElem> palya = new ArrayList<TeruletiElem>();
+        ArrayList<TeruletiElem> palya = new ArrayList<>();
 
         // region Sima teruleti elemek letrehozasa
         for(int db = 0; db < dbTeruletiElem; ++db){
@@ -102,7 +101,7 @@ public class PalyaKonfiguracio {
 
         // region Ovohelyek letrehozasa, feltoltese cuccokkal
         // Ovohelyek letrehozasa
-        ArrayList<Ovohely> engedelyezettOvohelyek = new ArrayList<Ovohely>();
+        ArrayList<Ovohely> engedelyezettOvohelyek = new ArrayList<>();
         for(int db = 0; db < dbOvohely; db++){
             engedelyezettOvohelyek.add(new Ovohely());
         }

@@ -1,6 +1,5 @@
 package cli;
 
-import Editor.ViroMenu.Medve;
 import Logika.Jatek;
 import Logika.Virologus;
 import Modell.Agensek.*;
@@ -12,7 +11,6 @@ import Modell.TulajdonsagModosito;
 import Modell.Vedofelszereles.*;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class FoMenu {
     // AZ a virologus akit iranyit a jatekos jelenleg
@@ -232,7 +230,7 @@ public class FoMenu {
         System.out.println("~~~~~~~~~~~~~~~~~~| KENES |~~~~~~~~~~~~~~~~~");
 
         // Ha nem lenne mit csinalnia akkor felesleges tovabb folytatni a dolgokat...
-        if(aktivJatekos.getFelhasznalhatoAgensek().size() == 0){
+        if(aktivJatekos.getFelhasznalhatoAgensek().isEmpty()){
             System.out.println("Nincs hasznalhato Agens!");
             return;
         }
@@ -245,7 +243,7 @@ public class FoMenu {
         System.out.println("Kire akarsz kenni?");
         ArrayList<Virologus> btuRendben = beturendben(egyMezonlevok);
 
-        if(btuRendben.size()==0){
+        if(btuRendben.isEmpty()){
             System.out.println("Nincs kire kenni");
         }
         
