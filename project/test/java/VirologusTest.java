@@ -156,21 +156,19 @@ public class VirologusTest {
     }
 
     @Test
-    @DisplayName("Felszereles sikeres lopasa")
-    public void sikeresLopas() {
+    @DisplayName("Felszereles sikertelen lopasa")
+    public void sikertelenLopas() {
         Ovohely ovohely = zsakosOvohelyElokeszitese();
         bob.setStartTerulet(ovohely);
         alice.setStartTerulet(ovohely);
 
         bob.vedofelszerelesFelvetele(new Zsak());
 
-        bob.agensKapasa(bob, new Benulas(5));
-
         var zsak = bob.getAktivVedofelszerelesek().get(0);
 
         bob.lopasKezelese(alice, zsak);
 
-        assertEquals(1, alice.getAktivVedofelszerelesek().size());
+        assertEquals(0, alice.getAktivVedofelszerelesek().size());
     }
 
     // Anyag felvetele
