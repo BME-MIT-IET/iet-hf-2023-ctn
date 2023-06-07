@@ -63,7 +63,6 @@ Feature: Virologus functionality
   Scenario: Successful planting of Agens
     Given there is a TeruletiElem
     And Bob has an Agens
-    And Alice is a Virologus with available modification slots
     And Alice and Bob are on the same TeruletiElem
     When Bob plants the Agens on Alice
     Then Alice should have the planted Agens as a modification
