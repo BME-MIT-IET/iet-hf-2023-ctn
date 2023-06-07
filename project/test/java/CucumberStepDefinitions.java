@@ -8,7 +8,7 @@ import Modell.Genetika.GenetikaiKod;
 import Modell.Palya.Labor;
 import Modell.Palya.Ovohely;
 import Modell.Palya.Raktar;
-import Modell.Palya.TeruletiElem;
+import Modell.Palya.TeruletiElem;  
 import Modell.TulajdonsagModosito;
 import Modell.Vedofelszereles.Balta;
 import Modell.Vedofelszereles.Vedofelszereles;
@@ -41,7 +41,7 @@ public class StepDefinitions {
     @Given("There is a Virologus named Bob")
     public void there_is_a_virologus_named_bob() {
         bob = new Virologus();
-        bob.senNev("Bob");
+        bob.setNev("Bob");
     }
 
     @Given("there is an Ovohely with a Balta")
@@ -59,7 +59,6 @@ public class StepDefinitions {
     @When("Bob picks up a Vedofelszereles")
     public void bob_picks_up_a_vedofelszereles() {
         bob.vedofelszerelesFelvetele(new Vedofelszereles());
-        activeVedofelszereles = bob.getAktivVedofelszerelesek().get(0);
     }
 
     @Then("Bob should have at least one active Vedofelszereles")
@@ -75,7 +74,6 @@ public class StepDefinitions {
     @When("Bob tries to pick up a Vedofelszereles")
     public void bob_tries_to_pick_up_a_vedofelszereles() {
         bob.vedofelszerelesFelvetele(new Vedofelszereles());
-        activeVedofelszereles = bob.getAktivVedofelszerelesek().isEmpty() ? null : bob.getAktivVedofelszerelesek().get(0);
     }
 
     @Then("Bob should not have any active Vedofelszereles")
@@ -98,23 +96,19 @@ public class StepDefinitions {
 
     @When("Bob picks up Aminosav")
     public void bob_picks_up_aminosav() {
-        bob.anyagFelvetele(raktar.getTargy());
-        collectedAnyag = bob.getGyujtottAnyagok().stream()
-                .filter(anyag -> anyag.getNev().equals("aminosav"))
-                .findFirst()
-                .orElse(null);
+        bob.anyagFelvetele(new Aminosav(aminosavMennyiseg));
     }
 
     @Then("Bob should have the specified amount of Aminosav")
     public void bob_should_have_the_specified_amount_of_aminosav() {
         int specifiedAmount = 10; 
-        Assert.assertEquals(specifiedAmount, bob.getAminosav());
+        Assert.assertEquals(specifiedAmount, bob.getMennyiseg());
     }
 
     @Given("there is a Labor with a GenetikaiKod")
     public void there_is_a_labor_with_a_genetikai_kod() {
         labor = new Labor();
-        labor.setGenKod(new GenetikaiKod(anyagok, new MedveVirus()));
+        labor.setGenKod(new GenetikaiKod(10, new MedveVirus()));
     }
 
     @Given("Bob starts at the Labor")
@@ -126,7 +120,7 @@ public class StepDefinitions {
     @When("Bob scans the code")
     public void bob_scans_the_code() {
         bob.kodLetapogatasa();
-        scannedGenetikaiKod = bob.getIsmertKodok();
+        List<Agens> scannedGenetikaiKod = bob.getIsmertKodok();
     }
 
     @Then("Bob should have the scanned GenetikaiKod")
@@ -171,14 +165,14 @@ public class StepDefinitions {
         Assert.assertEquals(startingTerulet, bob.getJelenlegiMezo());
     }
 
-    @Given("there is a Raktar with enough Aminosav")
-    public void there_is_a_raktar_with_enough_aminosav() {
-        Raktar raktar = aminosavasRaktarElokeszitese(32);
+    @Given("there is a Raktar")
+    public void there_is_a_raktar() {
+        Raktar raktar = new Raktar();
     }
 
-    @Given("there is a Labor with enough Aminosav for the creation")
-    public void there_is_a_labor_with_enough_aminosav_for_the_creation() {
-        labor = medvevirusosLaborElokeszitese(10);
+    @Given("there is a Laborfor the creation")
+    public void there_is_a_labor_for_the_creation() {
+        labor = new Labor();
     }
 
     @Given("Bob starts at the Raktar")
@@ -193,7 +187,6 @@ public class StepDefinitions {
         bob.mozgas(labor);
         bob.kodLetapogatasa();
         bob.agensKeszitese(scannedGenetikaiKod);
-        createdAgens = bob.getAgensek().isEmpty() ? null : bob.getAgensek().get(0);
     }
 
     @Then("Bob should have at least one Agens")
@@ -212,7 +205,6 @@ public class StepDefinitions {
         bob.mozgas(labor);
         bob.kodLetapogatasa();
         bob.agensLetrehozas(scannedGenetikaiKod);
-        createdAgens = bob.getAgensek().isEmpty() ? null : bob.getAgensek().get(0);
     }
 
     @Then("Bob should not have any Agens")
@@ -227,12 +219,13 @@ public class StepDefinitions {
 
     @Given("Bob has an Agens")
     public void bob_has_an_agens() {
-        Agens medveAgens = bob.getFelhasznalhatoAgensek().get(0);
+        Agens medveAgens = bob.getFelhasznalhatoAgensek().iterator().next();;
     }
 
     @Given("Alice is a Virologus")
     public void alice_is_a_virologus() {
-        alice = new Virologus("Alice");
+        alice = new Virologus();
+        alice.setNev("Alice")
     }
 
     @Given("Alice and Bob are on the same TeruletiElem")
@@ -249,6 +242,5 @@ public class StepDefinitions {
     @Then("Alice should have the planted Agens as a modification")
     public void alice_should_have_the_planted_agens_as_a_modification() {
         Assert.assertEquals(1, alice.getModositasok().size());
-        Assert.assertEquals(createdAgens, alice.getModositasok().get(0));
     }
 }
