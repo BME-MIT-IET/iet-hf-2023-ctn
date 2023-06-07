@@ -1,7 +1,9 @@
 import Logika.Virologus;
 import Modell.Agensek.Agens;
+import Modell.Agensek.Benulas;
 import Modell.Agensek.Felejtes;
 import Modell.Agensek.MedveVirus;
+import Modell.Agensek.Sebezhetetlenseg;
 import Modell.Anyagok.Aminosav;
 import Modell.Anyagok.Anyag;
 import Modell.Genetika.GenetikaiKod;
@@ -12,6 +14,8 @@ import Modell.Palya.TeruletiElem;
 import Modell.TulajdonsagModosito;
 import Modell.Vedofelszereles.Balta;
 import Modell.Vedofelszereles.Vedofelszereles;
+import Modell.Vedofelszereles.Zsak;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -44,6 +48,15 @@ public class VirologusTest {
         Balta balta = new Balta();
 
         ovohely.vedofelszerelesElhelyezese(balta);
+
+        return ovohely;
+    }
+
+    public Ovohely zsakosOvohelyElokeszitese(){
+        Ovohely ovohely = new Ovohely();
+        Zsak zsak = new Zsak();
+
+        ovohely.vedofelszerelesElhelyezese(zsak);
 
         return ovohely;
     }
@@ -123,6 +136,41 @@ public class VirologusTest {
         assertFalse(bobFelszerelesei.size() > 0);
     }
 
+    @Test
+    @DisplayName("Felszereles sikeres eldobasa")
+    public void sikeresEldobas() {
+        Ovohely ovohely = baltasOvohelyElokeszitese();
+        bob.setStartTerulet(ovohely);
+
+        bob.vedofelszerelesFelvetele(new Balta());
+
+        List<Vedofelszereles> bobFelszerelesei = bob.getAktivVedofelszerelesek();
+
+        assertTrue(bobFelszerelesei.size() > 0);
+
+        bob.vedofelszerelesEldobasa(bobFelszerelesei.get(0));
+
+        bobFelszerelesei = bob.getAktivVedofelszerelesek();
+
+        assertFalse(bobFelszerelesei.size() > 0);
+    }
+
+    @Test
+    @DisplayName("Felszereles sikertelen lopasa")
+    public void sikertelenLopas() {
+        Ovohely ovohely = zsakosOvohelyElokeszitese();
+        bob.setStartTerulet(ovohely);
+        alice.setStartTerulet(ovohely);
+
+        bob.vedofelszerelesFelvetele(new Zsak());
+
+        var zsak = bob.getAktivVedofelszerelesek().get(0);
+
+        bob.lopasKezelese(alice, zsak);
+
+        assertEquals(0, alice.getAktivVedofelszerelesek().size());
+    }
+
     // Anyag felvetele
     @Test
     @DisplayName("Anyag sikeres felvetele")
@@ -152,9 +200,40 @@ public class VirologusTest {
         assertNotEquals(aminosavMennyiseg, aminosav.getMennyiseg());
     }
 
+    @Test
+    @DisplayName("Anyag sikeres felhasznalasa")
+    public void sikeresAnyagFelhasznalas() {
+        int mennyiseg = 20;
+
+        Raktar raktar = aminosavasRaktarElokeszitese(mennyiseg);
+        bob.setStartTerulet(raktar);
+
+        Aminosav anyagok = new Aminosav(mennyiseg);
+        bob.anyagFelvetele(anyagok);
+
+        var eredmeny = bob.anyagFelhasznalasa(anyagok);
+
+        assertEquals(anyagok.getMennyiseg(), 0);
+        assertEquals(eredmeny.getMennyiseg(), mennyiseg);
+    
+    }
+
     // Kod letapogatasa
     @Test
     @DisplayName("Genetikai kod sikeres letapogatasa")
+    public void sikertelenKodLetapogatasa_NincsKodLaborban_False(){
+        TeruletiElem labor = new TeruletiElem();
+        bob.setStartTerulet(labor);
+
+        bob.kodLetapogatasa();
+
+        Set<GenetikaiKod> kodjai = bob.getIsmertKodok();
+
+        assertEquals(0, kodjai.size());
+    }
+
+    @Test
+    @DisplayName("Genetikai kod sikertelen letapogatasa")
     public void sikeresKodLetapogatasa_VanKodLaborban_True(){
 
         Labor labor = medvevirusosLaborElokeszitese(32);
@@ -276,6 +355,29 @@ public class VirologusTest {
 
         //ROSSZ: assertTrue(hatasai.get(0) instanceof Felejtes);
         assertTrue(hatasai.get(0) instanceof MedveVirus);
+        //Alternative: assertEquals(1, hatasai.size());
+    }
+
+    @Test
+    @DisplayName("Agens sikertelen vetese")
+    public void agensVetese_BirtokoltAgensVetese_False(){
+
+        TeruletiElem terulet = new TeruletiElem();
+
+        bob = agensselRendelkezoVirologusElokeszitese();
+        bob.setStartTerulet(terulet);
+        alice.setStartTerulet(terulet);
+
+        alice.agensKapasa(alice, new Sebezhetetlenseg());
+
+        Agens medveAgens = bob.getFelhasznalhatoAgensek().get(0);
+
+        bob.agensVetese(medveAgens, alice);
+
+        List<TulajdonsagModosito> hatasai = alice.getAktivModositok();
+
+        //ROSSZ: assertTrue(hatasai.get(0) instanceof Felejtes);
+        assertFalse(hatasai.get(0) instanceof MedveVirus);
         //Alternative: assertEquals(1, hatasai.size());
     }
 }
