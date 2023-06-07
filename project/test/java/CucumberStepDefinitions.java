@@ -22,7 +22,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
-public class StepDefinitions {
+public class CucumberStepDefinitions {
     private Virologus alice;
     private Virologus bob;
     private Ovohely ovohely;
@@ -127,7 +127,7 @@ public class StepDefinitions {
     @When("Bob scans the code")
     public void bob_scans_the_code() {
         bob.kodLetapogatasa();
-        List<Agens> scannedGenetikaiKod = bob.getIsmertKodok();
+        Set<GenetikaiKod> scannedGenetikaiKod = bob.getIsmertKodok();
     }
 
     @Then("Bob should have the scanned GenetikaiKod")
