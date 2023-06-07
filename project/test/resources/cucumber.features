@@ -1,0 +1,70 @@
+Feature: Virologus functionality
+
+  Background:
+    Given Alice is a Virologus named "Alice"
+    And Bob is a Virologus named "Bob"
+
+  Scenario: Successful equipment pickup
+    Given there is an Ovohely with a Balta
+    And Bob starts on the Ovohely
+    When Bob picks up a Vedofelszereles
+    Then Bob should have at least one active Vedofelszereles
+
+  Scenario: Failed equipment pickup
+    Given there is an empty Ovohely
+    And Bob starts on the Ovohely
+    When Bob tries to pick up a Vedofelszereles
+    Then Bob should not have any active Vedofelszereles
+
+  Scenario: Successful material pickup
+    Given there is a Raktar with Aminosav
+    And Bob starts at the Raktar
+    When Bob picks up Aminosav
+    Then Bob should have the specified amount of Aminosav
+
+  Scenario: Failed material pickup
+    Given there is a Raktar with insufficient Aminosav
+    And Bob starts at the Raktar
+    When Bob tries to pick up Aminosav
+    Then Bob should not have the specified amount of Aminosav
+
+  Scenario: Successful code scanning
+    Given there is a Labor with a GenetikaiKod
+    And Bob starts at the Labor
+    When Bob scans the code
+    Then Bob should have the scanned GenetikaiKod
+
+  Scenario: Successful movement to adjacent field
+    Given Bob starts at a TeruletiElem
+    And there is another adjacent TeruletiElem
+    When Bob moves to the adjacent TeruletiElem
+    Then Bob should be on the adjacent TeruletiElem
+
+  Scenario: Failed movement to non-adjacent field
+    Given Bob starts at a TeruletiElem
+    And there is another non-adjacent TeruletiElem
+    When Bob tries to move to the non-adjacent TeruletiElem
+    Then Bob should remain on the starting TeruletiElem
+
+  Scenario: Successful creation of Agens
+    Given there is a Raktar with enough Aminosav
+    And there is a Labor with enough Aminosav for the creation
+    And Bob starts at the Raktar
+    When Bob picks up Aminosav and moves to the Labor and scans the code and creates an Agens
+    Then Bob should have at least one Agens
+
+  Scenario: Failed creation of Agens due to insufficient materials
+    Given there is a Raktar with insufficient Aminosav
+    And there is a Labor with enough Aminosav for the creation
+    And Bob starts at the Raktar
+    When Bob picks up Aminosav and moves to the Labor and scans the code and tries to create an Agens
+    Then Bob should not have any Agens
+
+  Scenario: Successful planting of Agens
+    Given there is a TeruletiElem
+    And Bob has an Agens
+    And Alice is a Virologus with available modification slots
+    And Alice and Bob are on the same TeruletiElem
+    When Bob plants the Agens on Alice
+    Then Alice should have the planted Agens as a modification
+
