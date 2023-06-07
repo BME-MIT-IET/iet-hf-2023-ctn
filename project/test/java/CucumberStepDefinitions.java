@@ -225,7 +225,7 @@ public class StepDefinitions {
     @Given("Alice is a Virologus")
     public void alice_is_a_virologus() {
         alice = new Virologus();
-        alice.setNev("Alice")
+        alice.setNev("Alice");
     }
 
     @Given("Alice and Bob are on the same TeruletiElem")
